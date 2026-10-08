@@ -6,7 +6,7 @@ on: [push, workflow_dispatch]
 jobs:
   healer:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 75
     env:
       HEALER_API_KEY: ${{ secrets.HEALER_API_KEY }}
     steps:
