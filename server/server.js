@@ -385,7 +385,14 @@ app.delete('/api/boveda/:tabla/:id', async (req, res) => {
 
 // 📦 Catálogo estático embebido — moldes base que esta app usa, congelados al momento de
 // exportar (ya no se sincronizan con MEITI).
-const catalogoEstatico = JSON.parse(readFileSync(path.join(__dirname, 'catalogo_estatico.json'), 'utf8'));
+// El código de cada molde vive en server/moldes/ (ver el encabezado de esos archivos): se carga una
+// vez al arrancar. Un fin de línea de Windows (CRLF, al editar en Windows) no cambia nada.
+const ENCABEZADO_MOLDE = "/* global React, useState, useEffect, useRef, useMemo, useCallback, datos, tema, UI, MEITI, LIBRERIAS_PREMIUM, Iconos, Animacion, Graficos, render */\n// Molde de MEITI: este archivo es el código que corre la app (server/server.js lo carga al arrancar; si lo cambias, reinicia el backend).\n";
+const catalogoEstatico = JSON.parse(readFileSync(path.join(__dirname, 'catalogo_estatico.json'), 'utf8')).map((m) => {
+  if (!m.archivo_codigo) return m;
+  const texto = readFileSync(path.join(__dirname, m.archivo_codigo), 'utf8').replace(/\r\n/g, '\n');
+  return { ...m, codigo_crudo: texto.startsWith(ENCABEZADO_MOLDE) ? texto.slice(ENCABEZADO_MOLDE.length) : texto };
+});
 app.get('/api/catalogo/componentes', (req, res) => res.json(catalogoEstatico));
 
 // 🔌 CONFIGURACIÓN LOCAL DE CONEXIONES (etapa 2 del export): a diferencia de la etapa 1, que

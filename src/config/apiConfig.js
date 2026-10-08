@@ -6,3 +6,14 @@
 // ('') funciona siempre, sin variable de entorno: en dev, vite.config.ts hace de proxy de
 // '/api' hacia el backend local; en producción, nginx hace exactamente lo mismo.
 export const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:4001';
+
+// 🔗 [EXPORT, 2026-10-08] En una app exportada los moldes traen escrita la URL del backend local
+// ("http://localhost:4001", ver reescribirUrlBackend en server.js). Sirve en la PC y en el
+// instalador de escritorio, pero subida a la web (Vercel, Netlify) apuntaba a la PC de quien abre
+// la página: VITE_API_URL existía y los moldes no la leían. Se cambia acá, en un solo lugar, antes
+// de compilar cada molde. En MEITI API_BASE_URL es '' y esto no cambia nada.
+const URL_BACKEND_LOCAL_EXPORT = 'http://localhost:4001';
+export const adaptarUrlBackendDelMolde = (codigo) =>
+  (API_BASE_URL && API_BASE_URL !== URL_BACKEND_LOCAL_EXPORT && typeof codigo === 'string')
+    ? codigo.split(URL_BACKEND_LOCAL_EXPORT).join(API_BASE_URL.replace(/\/$/, ''))
+    : codigo;

@@ -1,6 +1,16 @@
 {
   "revisar": [
-    "src/fabrica/diccionario/**"
+    "server/moldes/CafeGranoPOS_muv12ucj__Configuracion.jsx",
+    "server/moldes/CafeGranoPOS_muv12ucj__PanelRolesPermisos.jsx",
+    "server/moldes/CafeGranoPOS_muv12ucj__PanelConfiguracionArchivos.jsx",
+    "server/moldes/CafeGranoPOS_muv12ucj__CG_TerminalPOS.jsx",
+    "server/moldes/CafeGranoPOS_muv12ucj__CG_GestionCaja.jsx",
+    "server/moldes/CafeGranoPOS_muv12ucj__CG_HistorialVentas.jsx",
+    "server/moldes/CafeGranoPOS_muv12ucj__CG_DashboardReportes.jsx",
+    "server/moldes/CafeGranoPOS_muv12ucj__CG_GestorProductos.jsx",
+    "server/moldes/CafeGranoPOS_muv12ucj__CG_ResumenCajeros.jsx",
+    "server/moldes/CafeGranoPOS_muv12ucj__CG_HistorialTurnos.jsx",
+    "server/moldes/CafeGranoPOS_muv12ucj__CG_GestorCatalogos.jsx"
   ],
   "vulnerabilidades_aceptadas": [
     {

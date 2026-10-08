@@ -22,7 +22,7 @@ import { resolverRolEnApp, resolverUsuarioActual, puedeVerPagina } from '../comu
 // 🧭 [2026-08-18] Ver contextoNavegacionApp.js — este import viaja al export standalone igual que
 // kitUI.jsx, así que el archivo está agregado a la lista explícita de generarArchivosProyectoExportado().
 import { ContextoNavegacionApp } from '../fabrica/core/contextoNavegacionApp.js';
-import { API_BASE_URL } from '../config/apiConfig';
+import { API_BASE_URL, adaptarUrlBackendDelMolde } from '../config/apiConfig';
 
 // 🔒 [SEC-20 2026-08-15] El export standalone no tiene /landing/auth.js (no hay login de
 // arquitecto ni sesiones ahí) — sin token, useCatalogoComponentes simplemente no lo manda, mismo
@@ -640,7 +640,9 @@ const useCatalogoComponentes = (appId, tokenPreview) => {
       : `${API_BASE_URL}/api/catalogo/componentes`;
     fetch(url, { headers: { 'x-session-token': leerTokenSesionSiExiste() || '' } })
       .then(res => res.json())
-      .then(data => setCatalogo(data))
+      // En un export subido a la web, la URL del backend de cada molde se adapta a VITE_API_URL
+      // (ver adaptarUrlBackendDelMolde). En MEITI no cambia nada.
+      .then(data => setCatalogo(Array.isArray(data) ? data.map(m => (m && m.codigo_crudo) ? { ...m, codigo_crudo: adaptarUrlBackendDelMolde(m.codigo_crudo) } : m) : data))
       .catch(err => {
         console.error("Fallo Bóveda:", err);
         setErrorCatalogo(err.message || 'No se pudo conectar con el backend.');
