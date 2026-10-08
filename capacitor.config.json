@@ -1,0 +1,11 @@
+{
+  "appId": "dev.meiti.export.cafegranopos_muv12ucj",
+  "appName": "CafeGranoPOS",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "webContentsDebuggingEnabled": false
+  }
+}

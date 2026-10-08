@@ -1,0 +1,22 @@
+# Healer revisa y repara esta app en cada push (https://meiti.dev/healer).
+# Necesita el secret HEALER_API_KEY. Sin él, el paso se salta y no falla.
+name: Healer
+on: [push, workflow_dispatch]
+
+jobs:
+  healer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      HEALER_API_KEY: ${{ secrets.HEALER_API_KEY }}
+    steps:
+      - uses: actions/checkout@v5
+      - if: env.HEALER_API_KEY == ''
+        run: echo "::notice::Falta el secret HEALER_API_KEY. Créalo en https://meiti.dev/healer para que Healer revise esta app."
+      - if: env.HEALER_API_KEY != ''
+        id: healer
+        uses: meiti-dev/healer-action@v1
+        with:
+          api-key: ${{ env.HEALER_API_KEY }}
+          ai-level: free
+          fail-on: never

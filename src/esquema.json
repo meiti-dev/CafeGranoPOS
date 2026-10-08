@@ -1,0 +1,129 @@
+{
+  "requiere_login": true,
+  "tema": {
+    "colorPrimario": "#E07A5F",
+    "colorSecundario": "#81B29A",
+    "fondo": "#FDF6EC",
+    "superficie": "#FFFFFF",
+    "texto": "#3D405B"
+  },
+  "navegacion": {
+    "tipo": "tabs_inferior"
+  },
+  "paginas": [
+    {
+      "id": "vender",
+      "titulo": "Vender",
+      "icono": "fa-store",
+      "componentes": [
+        {
+          "tipo": "CafeGranoPOS_muv12ucj__CG_TerminalPOS",
+          "col_span": 12
+        }
+      ],
+      "descripcion": "Grilla rápida de productos por categoría y panel de ticket en curso con cálculo de vuelto y selección de pago"
+    },
+    {
+      "id": "caja",
+      "titulo": "Caja",
+      "icono": "fa-cash-register",
+      "componentes": [
+        {
+          "tipo": "CafeGranoPOS_muv12ucj__CG_GestionCaja",
+          "col_span": 12
+        }
+      ],
+      "descripcion": "Apertura y cierre de caja con arqueo de valores, control de movimientos y registro de retiros"
+    },
+    {
+      "id": "ventas",
+      "titulo": "Ventas",
+      "icono": "fa-receipt",
+      "componentes": [
+        {
+          "tipo": "CafeGranoPOS_muv12ucj__CG_HistorialVentas",
+          "col_span": 12
+        }
+      ],
+      "descripcion": "Listado detallado de tickets emitidos en el día con opción de ver desglose y registrar anulaciones con motivo"
+    },
+    {
+      "id": "reportes",
+      "titulo": "Reportes",
+      "icono": "fa-chart-pie",
+      "componentes": [
+        {
+          "tipo": "CafeGranoPOS_muv12ucj__CG_DashboardReportes",
+          "col_span": 12
+        }
+      ],
+      "descripcion": "Métricas y gráficos de ventas por día, semana, productos destacados, horarios y medios de pago"
+    },
+    {
+      "id": "productos",
+      "titulo": "Productos",
+      "icono": "fa-box-open",
+      "componentes": [
+        {
+          "tipo": "CafeGranoPOS_muv12ucj__CG_GestorProductos",
+          "col_span": 12
+        }
+      ],
+      "descripcion": "Catálogo para crear y editar productos con nombre, categoría, precio, imagen y estado de disponibilidad"
+    },
+    {
+      "id": "configuracion",
+      "titulo": "Ajustes",
+      "icono": "fa-gear",
+      "rol": "admin",
+      "componentes": [
+        {
+          "tipo": "CafeGranoPOS_muv12ucj__Configuracion",
+          "col_span": 12
+        },
+        {
+          "tipo": "CafeGranoPOS_muv12ucj__PanelRolesPermisos",
+          "col_span": 12
+        },
+        {
+          "tipo": "CafeGranoPOS_muv12ucj__PanelConfiguracionArchivos",
+          "col_span": 12
+        }
+      ],
+      "descripcion": "Registro y seguimiento de turnos de cajeros con el total vendido por cada uno"
+    },
+    {
+      "id": "turnos",
+      "titulo": "Turnos",
+      "icono": "fa-user-clock",
+      "rol": "admin",
+      "componentes": [
+        {
+          "tipo": "CafeGranoPOS_muv12ucj__CG_ResumenCajeros",
+          "col_span": 12
+        },
+        {
+          "tipo": "CafeGranoPOS_muv12ucj__CG_HistorialTurnos",
+          "col_span": 12
+        }
+      ],
+      "descripcion": "Registro y seguimiento de turnos de cajeros con el total vendido por cada uno"
+    },
+    {
+      "id": "catalogos",
+      "titulo": "Catálogos",
+      "icono": "fa-tags",
+      "rol": "admin",
+      "componentes": [
+        {
+          "tipo": "CafeGranoPOS_muv12ucj__CG_GestorCatalogos",
+          "col_span": 12
+        }
+      ],
+      "descripcion": "Configuración de categorías de productos, medios de pago, motivos de anulación y descuentos predefinidos"
+    }
+  ],
+  "estilo_layout": "app",
+  "es_industrial": false,
+  "estilo_visual": "movil"
+}
